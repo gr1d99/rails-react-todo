@@ -1,0 +1,17 @@
+.home {
+  margin-top: 2rem;
+  &__heading {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 0.1rem;
+  }
+  &__new-todo,
+  &__title {
+    flex-grow: 2;
+  }
+  &__new-todo {
+    button {
+      float: right;
+    }
+  }
+}

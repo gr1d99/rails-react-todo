@@ -1,0 +1,11 @@
+.todo {
+  display: flex;
+  &__mark-done {
+    text-align: right;
+  }
+  &__header-item {
+    &.done {
+      text-decoration: line-through;
+    }
+  }
+}
