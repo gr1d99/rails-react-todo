@@ -2,25 +2,10 @@ import React from 'react';
 import { ListGroup } from 'react-bootstrap';
 import './todo.scss';
 import todoService from '../../services/todo';
-
-const useFetchTodo = ({ todoId }) => {
-	const [todo, setTodo] = React.useState(null);
-	
-	React.useEffect(() => {
-		todoService
-			.get(todoId)
-			.then(response => {
-				const { data } = response;
-				setTodo(data);
-			})
-			.catch(error => {})
-	}, [])
-	
-	return { todo, setTodo };
-}
+import useFetchTodo from './hooks/useFetchTodo';
 
 const Todo = ({ todoId }) => {
-	const { todo, setTodo } = useFetchTodo({ todoId })
+	const { todo, setTodo } = useFetchTodo({ todoId, service: todoService })
 
 	const markAsDone = () => {
 		const { id } = todo;
@@ -44,11 +29,11 @@ const Todo = ({ todoId }) => {
 			{todo ? (
 				<ListGroup.Item>
 					<div className='todo__header'>
-						<span
+						<h4
 							className={`todo__header-item ${todo.done ? 'done': ''}`}
 						>
 							{todo.name}
-						</span>
+						</h4>
 						<span className='todo__header-item todo__mark-done' onClick={markAsDone}>Mark as Done</span>
 					</div>
 					<div>

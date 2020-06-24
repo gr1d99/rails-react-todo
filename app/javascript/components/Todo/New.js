@@ -1,15 +1,26 @@
 import React from 'react';
-import { Button, Form, FormGroup, FormControl, Modal } from 'react-bootstrap';
+import {
+	Button,
+	Form,
+	FormGroup,
+	FormControl,
+	Modal
+} from 'react-bootstrap';
 import useForm from '../hooks/useForm';
 import todoService from '../../services/todo';
 
+const initialFormValues = {
+	name: '',
+	description: '',
+	done: false
+};
+
 const New = ({ show, handleClose, setTodos }) => {
-	const initialValues = { name: '', description: '', done: false };
 	const {
 		formValues,
 		setFormValues,
 		handleChange
-	} = useForm({ initialValues });
+	} = useForm({ initialValues: initialFormValues });
 
 	const handleSubmit = event => {
 		event.preventDefault();
@@ -29,10 +40,7 @@ const New = ({ show, handleClose, setTodos }) => {
 					console.log(error)
 				})
 				handleClose();
-				setFormValues({
-					name: '',
-					description: ''
-				})
+				setFormValues(initialFormValues)
 			}).catch(error => {
 				const { response } = error;
 				if (response) {

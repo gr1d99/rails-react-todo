@@ -1,5 +1,11 @@
 .todo {
-  display: flex;
+  &__header {
+    display: flex;
+
+    &-item {
+      flex: auto;
+    }
+  }
   &__mark-done {
     text-align: right;
   }

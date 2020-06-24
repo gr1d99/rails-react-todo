@@ -18,7 +18,7 @@ module Api
         if @todo.valid?
           @todo.save!
 
-          render json: @todo
+          render json: @todo, status: :created
         else
           render json: @todo.errors
         end
